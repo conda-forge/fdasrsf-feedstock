@@ -20,20 +20,20 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - cffi >=1.0.0
-    - cython
-    - numpy
+    - cython >= 0.29.17
+    - numpy >=1.18
     - pip
     - python
   run:
     - cffi >=1.0.0
-    - cython
-    - joblib
+    - cython >= 0.29.17
+    - joblib >= 0.16.0
     - matplotlib-base
-    - numba
+    - numba >=0.51.2
     - patsy
     - pyparsing
     - python
-    - scipy
+    - scipy >= 1.5
     - six
     - tqdm
     - {{ pin_compatible('numpy') }}
