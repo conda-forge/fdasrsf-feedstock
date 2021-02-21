@@ -11,7 +11,7 @@ source:
   sha256: f1d840dde71a6f2e8e0d50a7d14c6fe7ba26854f027a34935b1f0ed63b742130
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -20,20 +20,20 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - cffi >=1.0.0
-    - cython >= 0.29.17
+    - cython >=0.29.17
     - numpy >=1.18
     - pip
     - python
   run:
     - cffi >=1.0.0
-    - cython >= 0.29.17
-    - joblib >= 0.16.0
+    - cython >=0.29.17
+    - joblib >=0.16.0
     - matplotlib-base
     - numba >=0.51.2
     - patsy
     - pyparsing
     - python
-    - scipy >= 1.5
+    - scipy >=1.5
     - six
     - tqdm
     - {{ pin_compatible('numpy') }}
