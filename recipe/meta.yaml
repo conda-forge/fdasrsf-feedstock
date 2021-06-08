@@ -1,5 +1,5 @@
 {% set name = "fdasrsf" %}
-{% set version = "2.2.9" %}
+{% set version = "2.2.10" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fdasrsf-{{ version }}.tar.gz
-  sha256: d47e970c754fb5689f93720b5bfdcb5e678982f3a2a8b21dc8dc0676425737f6
+  sha256: c476aa11baf6f2be6fab9fc603b21ddeb5b3ecb0878fdef22dbfcfc845d637e8
 
 build:
   number: 0
