@@ -11,7 +11,7 @@ source:
   sha256: 91927c8875a11619c415a25196ad7278b5e4a9fcf15452da76733193493000ec
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -35,6 +35,7 @@ requirements:
     - python
     - scipy >=1.5
     - six
+    - GPy
     - tqdm
     - {{ pin_compatible('numpy') }}
 
