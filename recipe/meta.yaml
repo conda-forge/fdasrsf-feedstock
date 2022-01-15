@@ -38,6 +38,7 @@ requirements:
     - GPy
     - tqdm
     - {{ pin_compatible('numpy') }}
+    - {{ pin_compatible('numba') }}
 
 test:
   imports:
