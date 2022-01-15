@@ -23,6 +23,7 @@ requirements:
   host:
     - python
     - setuptools
+    - numpy {{ numpy }}
     - cffi >=1.0.0
     - cython >=0.29.17
     - pip
