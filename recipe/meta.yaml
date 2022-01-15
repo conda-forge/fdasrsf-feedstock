@@ -17,20 +17,20 @@ build:
 requirements:
   build:
     - python
-    - numpy {{ numpy }}
+    - numpy >=1.18 {{ numpy }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
     - python
     - setuptools
-    - numpy {{ numpy }}
+    - numpy >=1.18 {{ numpy }}
     - cffi >=1.0.0
     - cython >=0.29.17
     - pip
   run:
     - python
     - setuptools
-    - numpy {{ numpy }}
+    - numpy >=1.18 {{ numpy }}
     - cffi >=1.0.0
     - cython >=0.29.17
     - joblib >=0.16.0
