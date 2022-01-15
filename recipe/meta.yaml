@@ -35,13 +35,13 @@ requirements:
     - joblib >=0.16.0
     - matplotlib-base
     - numba >=0.55
+    - numpy >=1.18
     - patsy
     - pyparsing
     - scipy >=1.5
     - six
     - GPy
     - tqdm
-    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
