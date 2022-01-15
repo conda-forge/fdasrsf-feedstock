@@ -11,20 +11,26 @@ source:
   sha256: f792c2033ed9210a0b77850f5caf6df3f6d8c9e97e1e82172782a843e722e8aa
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
+    - python
+    - numpy {{ numpy }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
+    - python
+    - setuptools
+    - numpy {{ numpy }}
     - cffi >=1.0.0
     - cython >=0.29.17
-    - numpy >=1.18
     - pip
-    - python
   run:
+    - python
+    - setuptools
+    - numpy {{ numpy }}
     - cffi >=1.0.0
     - cython >=0.29.17
     - joblib >=0.16.0
@@ -32,12 +38,10 @@ requirements:
     - numba >=0.51.2
     - patsy
     - pyparsing
-    - python
-    - scipy >=1.5
+    - scipy
     - six
     - GPy
     - tqdm
-    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
