@@ -11,7 +11,7 @@ source:
   sha256: 60c96e30a9d41bb8ca7d8f57fc64a799f36a3460250764516e35c2cf20474f6e
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -40,7 +40,6 @@ requirements:
     - pyparsing
     - scipy
     - six
-    - GPy
     - tqdm
 
 test:
