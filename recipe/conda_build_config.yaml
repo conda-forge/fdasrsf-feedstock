@@ -1,4 +1,3 @@
 numpy:
-  - 1.22
-pin_run_as_build:
-  numpy: x.x
+    - 1.22
+    - 1.23
