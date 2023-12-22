@@ -1,5 +1,5 @@
 {% set name = "fdasrsf" %}
-{% set version = "2.5.2" %}
+{% set version = "2.5.3" %}
 
 
 package:
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fdasrsf-{{ version }}.tar.gz
-  sha256: 189d3a124511fc2fb903810ad98a8e6db5354d6a3c8bb7266d6f5254a20c38c9
+  sha256: 66d8f5b87b78da69e92acfd2cae398d8db8a9495b3351d24393e392b3a7d40ba
 
 build:
-  number: 2
+  number: 4
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -21,15 +21,22 @@ requirements:
     - numpy {{ numpy }}                    # [build_platform != target_platform]
     - cython                               # [build_platform != target_platform]
     - cffi >=1.0.0                         # [build_platform != target_platform]
+    - findblas                             # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - blas-devel
   host:
     - python
     - setuptools
     - numpy {{ numpy }}
     - cffi >=1.0.0
+    - findblas
     - cython >=0.29.17
     - pip
+    - libblas
+    - libcblas
+    - liblapack
+    - blas-devel
   run:
     - python
     - setuptools
