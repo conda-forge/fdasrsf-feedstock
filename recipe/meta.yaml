@@ -11,7 +11,7 @@ source:
   sha256: 6d1b20ce8331d9afbf6eacca9f879d65e10b63e6c4e689c490ce7e584d3a3a1f
 
 build:
-  number: 3
+  number: 4
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -24,7 +24,9 @@ requirements:
     - findblas                             # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - blas-devel
+    run_exports:
+      strong:
+        - blas-devel
   host:
     - python
     - setuptools
