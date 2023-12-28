@@ -11,7 +11,7 @@ source:
   sha256: 6d1b20ce8331d9afbf6eacca9f879d65e10b63e6c4e689c490ce7e584d3a3a1f
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -33,10 +33,6 @@ requirements:
     - findblas
     - cython >=0.29.17
     - pip
-    - libblas
-    - libcblas
-    - liblapack
-    - blas-devel
   run:
     - python
     - setuptools
