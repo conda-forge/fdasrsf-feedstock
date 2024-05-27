@@ -1,6 +1,5 @@
 python:
   # part of a zip_keys: python, python_impl, numpy
-  - 3.8.* *_cpython
   - 3.9.* *_cpython
   - 3.10.* *_cpython
   - 3.10.* *_cpython
@@ -11,10 +10,8 @@ python_impl:
   - cpython
   - cpython
   - cpython
-  - cpython
 numpy:
   # part of a zip_keys: python, python_impl, numpy
-  - 1.22
   - 1.22
   - 1.22
   - 1.23
