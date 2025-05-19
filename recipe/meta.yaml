@@ -11,12 +11,12 @@ source:
   sha256: 5cf44388b3dee2f37eb6bb9181c1f8e45255703de37301c179251a26e0d4343f
 
 build:
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
-    - python                               # [build_platform != target_platform]
+    - python >3.9                              # [build_platform != target_platform]
     - cross-python_{{ target_platform }}   # [build_platform != target_platform]
     - numpy {{ numpy }}                    # [build_platform != target_platform]
     - cython                               # [build_platform != target_platform]
@@ -27,7 +27,7 @@ requirements:
     - {{ compiler('cxx') }}
     - blas-devel
   host:
-    - python
+    - python >3.9
     - setuptools
     - numpy {{ numpy }}
     - cffi >=1.0.0
@@ -36,7 +36,7 @@ requirements:
     - pip
     - blas-devel
   run:
-    - python
+    - python >3.9
     - setuptools
     - numpy {{ numpy }}
     - cffi >=1.0.0
