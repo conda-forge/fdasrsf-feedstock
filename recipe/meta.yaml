@@ -11,12 +11,12 @@ source:
   sha256: 5cf44388b3dee2f37eb6bb9181c1f8e45255703de37301c179251a26e0d4343f
 
 build:
-  number: 3
+  skip: True  # [py<39]
+  number: 4
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
-    skip: True  # [py<39]
     - python                              # [build_platform != target_platform]
     - cross-python_{{ target_platform }}   # [build_platform != target_platform]
     - numpy {{ numpy }}                    # [build_platform != target_platform]
