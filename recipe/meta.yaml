@@ -1,5 +1,5 @@
 {% set name = "fdasrsf" %}
-{% set version = "2.6.2" %}
+{% set version = "2.6.3" %}
 
 
 package:
@@ -8,11 +8,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/fdasrsf-{{ version }}.tar.gz
-  sha256: 5cf44388b3dee2f37eb6bb9181c1f8e45255703de37301c179251a26e0d4343f
+  sha256: 02994cb6d0fe435303fde1ed48c4a9133cd4dbe4de2f60dd06ec811ee18c3def
 
 build:
-  skip: True  # [py<310]
-  number: 6
+  skip: true  # [py<310]
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
