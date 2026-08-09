@@ -12,34 +12,44 @@ source:
 
 build:
   skip: true  # [py<310]
-  number: 1
-  script: {{ PYTHON }} -m pip install . -vv
+  number: 2
+  # --no-build-isolation is the key change: without it pip ignores the host
+  # env and downloads setuptools/wheel/cffi/Cython/findblas/numpy from PyPI,
+  # so the extensions get compiled against whatever numpy PyPI happens to
+  # offer for that interpreter (2.2.6 on py310, 2.4.6 on py311, 2.5.2 on
+  # py312+) rather than against the conda-forge numpy in host.
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
-    - python                              # [build_platform != target_platform]
+    - python                               # [build_platform != target_platform]
     - cross-python_{{ target_platform }}   # [build_platform != target_platform]
-    - numpy {{ numpy }}                    # [build_platform != target_platform]
+    - numpy                                # [build_platform != target_platform]
     - cython                               # [build_platform != target_platform]
     - cffi >=1.0.0                         # [build_platform != target_platform]
     - findblas                             # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
-    - blas-devel
   host:
     - python
-    - setuptools
-    - numpy {{ numpy }}
+    - pip
+    # upstream pyproject caps this: requires = ["setuptools<=73.0.1", ...].
+    # With build isolation removed, the cap has to be honoured here instead.
+    - setuptools <=73.0.1
+    - wheel
+    - numpy
     - cffi >=1.0.0
     - findblas
     - cython >=0.29.17
-    - pip
+    # findblas links the extensions against BLAS at build time
+    - libblas
+    - libcblas
+    - liblapack
     - blas-devel
   run:
     - python
-    - setuptools
-    - numpy {{ numpy }}
+    - numpy >=1.25
     - cffi >=1.0.0
     - cython >=0.29.17
     - joblib >=0.16.0
@@ -47,13 +57,18 @@ requirements:
     - numba >=0.51.2
     - patsy
     - pyparsing
-    - scipy
+    - scipy >=1.14
     - six
     - tqdm
 
 test:
   imports:
     - fdasrsf
+    # exercise the compiled extensions, not just the pure-python package
+    - optimum_reparamN2
+    - cbayesian
+    - crbfgs
+    - cimage
   commands:
     - pip check
   requires:
@@ -65,9 +80,9 @@ about:
   license: BSD-3-Clause
   license_file: LICENSE.txt
   description: |
-    A python package for functional data analysis using the square root 
-    slope framework and curves using the square root velocity framework 
-    which performs pair-wise and group-wise alignment as well as modeling 
+    A python package for functional data analysis using the square root
+    slope framework and curves using the square root velocity framework
+    which performs pair-wise and group-wise alignment as well as modeling
     using functional component analysis and regression.
   doc_url: https://fdasrsf-python.readthedocs.io/
   dev_url: https://github.com/jdtuck/fdasrsf_python
