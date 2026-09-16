@@ -12,7 +12,7 @@ source:
 
 build:
   skip: true  # [py<310]
-  number: 1
+  number: 2
   # --no-build-isolation is the key change: without it pip ignores the host
   # env and downloads setuptools/wheel/cffi/Cython/findblas/numpy from PyPI,
   # so the extensions get compiled against whatever numpy PyPI happens to
@@ -34,21 +34,29 @@ requirements:
   host:
     - python
     - pip
-    # upstream pyproject requires = ["setuptools>=83.0.0", ...] as of 2.7.0
-    # (the old <=73.0.1 cap was dropped in fdasrsf_python#78 to pick up the
-    # CVE-2025-47273 / CVE-2026-59890 fixes).  With build isolation removed pip
-    # validates that requirement against this env, so it has to match.
+    # Mirrors upstream pyproject's build-system requires, which dropped the old
+    # setuptools<=73.0.1 cap in fdasrsf_python#78 (CVE-2025-47273 /
+    # CVE-2026-59890).  --no-build-isolation means pip does not install or
+    # verify those requires itself, so this env is what the build actually sees.
     - setuptools >=83.0.0
     - wheel
     - numpy
     - cffi >=1.0.0
     - findblas
     - cython >=0.29.17
-    # findblas links the extensions against BLAS at build time
+    # crbfgs is the only extension that needs BLAS: rbfgs.cpp uses Armadillo's
+    # norm()/dot(), and the vendored armadillo_bits/config.hpp sets
+    # ARMA_USE_BLAS without ARMA_USE_WRAPPER, so the .so references dnrm2_,
+    # ddot_, dasum_ and dgemv_ directly and must be linked against BLAS.
+    #
+    # These three are the BLAS-interface metapackages that provide those
+    # symbols.  Do NOT add blas-devel here: it turns blas_impl into a build
+    # variant, and the 2026.09.16 pinnings resolved that variant to *netlib,
+    # which is what regressed the crbfgs link (ImportError: undefined symbol:
+    # dnrm2_ at test time, since ELF allows unresolved symbols until dlopen).
     - libblas
     - libcblas
     - liblapack
-    - blas-devel
   run:
     - python
     - numpy >=1.25
