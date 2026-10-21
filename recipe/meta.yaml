@@ -12,7 +12,7 @@ source:
 
 build:
   skip: true  # [py<310]
-  number: 1
+  number: 2
   # --no-build-isolation is the key change: without it pip ignores the host
   # env and downloads setuptools/wheel/cffi/Cython/findblas/numpy from PyPI,
   # so the extensions get compiled against whatever numpy PyPI happens to
@@ -34,7 +34,7 @@ requirements:
   host:
     - python
     - pip
-    - setuptools >= 83.0.0
+    - setuptools >=83.0.0
     - wheel
     - numpy
     - cffi >=1.0.0
