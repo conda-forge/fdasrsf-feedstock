@@ -1,5 +1,5 @@
 {% set name = "fdasrsf" %}
-{% set version = "2.7.3" %}
+{% set version = "2.7.4" %}
 
 
 package:
@@ -8,11 +8,11 @@ package:
 
 source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/fdasrsf-{{ version }}.tar.gz
-  sha256: f0ed123f882e24e9fcdfef88354e40c84ca76d5a6e36d562f5c4031556c1faa0
+  sha256: fd676ad96556aeb2e114579063f88187ae2b84778da38116a424cdefed2c3be2
 
 build:
   skip: true  # [py<310]
-  number: 2
+  number: 0
   # --no-build-isolation is the key change: without it pip ignores the host
   # env and downloads setuptools/wheel/cffi/Cython/findblas/numpy from PyPI,
   # so the extensions get compiled against whatever numpy PyPI happens to
