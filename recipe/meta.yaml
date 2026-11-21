@@ -1,5 +1,5 @@
 {% set name = "fdasrsf" %}
-{% set version = "2.7.4" %}
+{% set version = "2.7.5" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/fdasrsf-{{ version }}.tar.gz
-  sha256: fd676ad96556aeb2e114579063f88187ae2b84778da38116a424cdefed2c3be2
+  sha256: bd5fa72f89de0fef8c4ae7f6ebaf7be813277f6bacea1c9391556b99e5cbca62
 
 build:
   skip: true  # [py<310]
